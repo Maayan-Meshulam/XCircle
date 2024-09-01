@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X circle</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- 
+    <div id="imgSide">
+        <img id="XCircle" src="images/XCircle1.png" onclick="removePicAddTable()">
+    </div> -->
+
+<div id="container">
+
+    <div id="sideText">
+        <h1>איקס עיגול</h1>
+        <div>
+            <p>
+                <select id="level" onchange="levels()">
+                    <option value="1">קל - בינוני</option>
+                    <option value="2">בינוני - קשה</option>
+                </select>
+            </p>
+
+            <br>
+
+            <p id="turnP">התור של : <span id="whoTurn"  style="font-weight: 200;"></span></p>
+            <br>
+            
+            <table id="tableSide">
+                <thead>
+                    <tr>
+                        <th>סיבוב <span></span></th>
+                        <th colspan="2">ניקוד</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>משתמש</th>
+                        <th>מחשב</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyPoints">
+                   
+                </tbody>
+                <tfoot>
+                    <th>סה"כ</th>
+                    <td id="totalUser">0</td>
+                    <td id="totalComp">0</td>
+                </tfoot>
+            </table>
+
+           <button id="resetPointsBtn" onclick="resetPoints()">איפוס</button>
+           
+        </div>
+    </div>
+
+
+    <div style="position: relative;">
+        <p id="line"></p>
+        <table id="tableXCircle">
+            <tr>
+                <td id="box1" onclick="above(1)"></td>
+                <td id="box2" onclick="above(2)"></td>
+                <td id="box3" onclick="above(3)"></td>
+            </tr>
+    
+            <tr>
+                <td id="box4" onclick="above(4)"></td>
+                <td id="box5" onclick="above(5)"></td>
+                <td id="box6" onclick="above(6)"></td>
+    
+            </tr>
+             <tr>
+                <td id="box7" onclick="above(7)"></td>
+                <td id="box8" onclick="above(8)"></td>
+                <td id="box9" onclick="above(9)"></td>
+            </tr>
+        </table>
+        <p id="startGameOverBtn" onclick="startOver()">התחל משחק חדש</p>
+    </div>
+   
+
+</div>
+
+<div id="popUp">
+</div>
+
+    <script src="js/X circle_script.js"></script>
+</body>
+</html>
