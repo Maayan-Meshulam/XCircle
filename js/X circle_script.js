@@ -201,6 +201,7 @@ function startOver(){
       document.getElementById('line').style.display = 'none';
       document.getElementById('line').classList.remove(`line${CombinationIndex}`);
       document.getElementById('container').style.display = 'flex';
+      level = 1;
       whoTurn();
 }
 
