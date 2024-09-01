@@ -154,7 +154,7 @@ function isBoxEmptyComp(){
 
 //סיום משחק - לוח מלא
 function endGame(){
-    addPopUpEnd();
+    setTimeout(addPopUpEnd, 1000);
 }
 
 
