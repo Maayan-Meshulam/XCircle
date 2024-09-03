@@ -44,7 +44,7 @@ let combinationsWin = [
 /************************************** הגדרת פונקציות ******************************************/
 
 
-onload = function(){level = 1};
+// onload = function(){level = 1};
 
 function computerBlock(){
     let count = 0;
@@ -201,9 +201,12 @@ function startOver(){
       //סגירת הפופ אפ
       document.getElementById('popUp').style.display = 'none';
       document.getElementById('line').style.display = 'none';
+      //לבדוק האם קיים בכלל כי אם עושים משחק חדש למרות שהמשחק לא נגמר אז זה לא נכון
       document.getElementById('line').classList.remove(`line${CombinationIndex}`);
       document.getElementById('container').style.display = 'flex';
       whoTurn();
+      console.log(level);
+      
 }
 
 
@@ -265,15 +268,66 @@ function computerChooseBoxRandomly(){
 
 //הפונקציה קובעת את רמת הקושי - דיפולט זה 1
 function levels(){
-    if(document.getElementById('level').value == 1)
+    if(document.getElementById('level').value == 1){
+        level = 1;
         return 1;
+    }
+    level = 2;
     return 2;
 }
 
 
+//פונקציה ששולחת אלרט בעת שינוי של הדרגה
+function levelsAlerts(){
+    if(document.getElementById('level').value == 1)
+        alert('בחרת בדרגת קושי קלה-בינונית. התחל לשחק');
+    else
+        alert('בחרת בדרגת קושי בינונית-קשה. התחל לשחק');
 
-//מופעל בעת לחיצה על משבצת
+        startOver();
+}
+
+
+
+
+//פונקציה שמורה על תחילת המשחק
+function addPopStartGame(){
+    let popUpOb = document.getElementById('popUpStart');
+    document.getElementById('container').style.display = 'none';
+    popUpOb.innerHTML = '<p>התחל משחק</p>';
+
+    popUpOb.onclick = function(){
+        popUpOb.style.display = 'none';
+        document.getElementById('container').style.display = 'flex';
+
+    }
+}
+
+
+//כאשר האתר נטען נפעיל את הפונקציה שמורה על פתיחת המשחק
+onload = function(){
+    addPopStartGame();
+}
+
+
+
+//פונקציה שמטפלת במקרים של לחיצה על משבצת כשאסור
+function MustNotClick(index){
+    if(!emptyBoxes.has(index)){
+        alert('בחרת משבצת תפוסה. אנא בחר בשנית');
+        return true;
+    }
+}
+
+
+
+
+//פונקציה ראשית ! - מופעל בעת לחיצה על משבצת
 function above(index){
+
+    while(MustNotClick(index)){
+        return;
+    }
 
     userChooseBox(index);
 
@@ -302,9 +356,7 @@ function above(index){
 
 
 
-//TODO:  לטפל במקרה של לחיצה על משבצת תפוסה
-//TODO: לעשות  פופ אפ שמודיע שאפשר להתחיל לשחק
-
+//TODO: לעשות פונקציה שמטפל במקרה שהמחשב יכול לנצח אז שינצח לפני שהוא חוסם
 
 
 
