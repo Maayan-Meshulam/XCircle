@@ -288,13 +288,12 @@ function levelsAlerts(){
 function addPopStartGame(){
     let popUpOb = document.getElementById('popUpStart');
     document.getElementById('container').style.display = 'none';
-    popUpOb.innerHTML = '<p class="Pstart"> התחל משחק</p>';
-    popUpOb.innerHTML += '<p class="Pstart" style="font-size: 50px">איקס עיגול</p>'
-    document.getElementsByClassName('Pstart')[0].style.transition = '1s';
+    popUpOb.innerHTML = '<p> התחל משחק</p>';
+    // popUpOb.innerHTML += '<p class="Pstart" style="font-size: 50px">איקס עיגול</p>';
 
     setInterval(function(){
-        document.getElementsByClassName('Pstart')[0].style.transform = 'scale(1.5)';
-        setTimeout(() => document.getElementsByClassName('Pstart')[0].style.transform = 'scale(1)', 500);
+        document.getElementById('popUpStart').style.transform = 'translate(-50%, -50%) scale(1.5)';
+        setTimeout(() => document.getElementById('popUpStart').style.transform = 'translate(-50%, -50%) scale(1)', 500);
     } ,1000);
 
     popUpOb.onclick = function(){

@@ -20,8 +20,8 @@ body{
 }
 
 h1{
-    text-shadow: 2px 2px 5px white, 2px 2px 3px #85055a;
-    color:#ad0074;
+    text-shadow: 2px 2px 5px white;
+    color: black;
     font-size: 70px;
 }
 
@@ -101,19 +101,17 @@ option{
     margin: auto;
 }
 
-.Pstart{
+#popUpStart{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);   
-    border-radius: 10px;
-    padding: 50px 100px;
     text-align: center;
-    color: #042c54;
-    background-color: inherit;
+    color: #021930;
     font-size: 80px;
     font-weight: bold;
     cursor: pointer;
+    transition: 1s;
 }
 
 #popUp{
