@@ -65,7 +65,7 @@ function computerBlock(){
                             if(!tempArrUser.includes(combinationsWinTemp[k]) && Array.from(emptyBoxes).includes(combinationsWinTemp[k]))
                             {
                                 //נוריד מסט המשבצות הפנויות
-                                emptyBoxes.delete(combinationsWin[k]);
+                                removeBoxFromGame(combinationsWin[k]);
                                 return combinationsWinTemp[k];
                             }
                         }
@@ -96,7 +96,37 @@ function isWin(arr){
 
 }
 
+function computerWin(){
 
+    let count = 0;
+    let combinationsWinTemp;
+
+    for(let i = 0; i < combinationsWin.length; i++){
+
+        for(let j = 0; j < tempArrComp.length; j++){
+            
+            combinationsWinTemp = Array.from(combinationsWin[i]);
+
+            if(combinationsWinTemp.includes(tempArrComp[j]))
+                count++;
+            
+            if(count == 2){
+                for(let k = 0; k < 3; k++){
+                    if(!tempArrComp.includes(combinationsWinTemp[k]) && emptyBoxes.has(combinationsWinTemp[k])){
+                        removeBoxFromGame(combinationsWinTemp[k]);
+                        return combinationsWinTemp[k];
+                    }
+                }
+               
+            }
+        }
+
+        count = 0;
+    }
+
+    return -1;
+
+}
 
 //פונקציה שאחראית על הוספת נקודות לטבלה בעת ניצחון
 function addLinePoints(){
@@ -222,6 +252,68 @@ function resetPoints(){
 }
 
 
+//הפונקציה קובעת את רמת הקושי - דיפולט זה 1
+function levels(){
+    if(document.getElementById('level').value == 1){
+        level = 1;
+        return 1;
+    }
+    else if(document.getElementById('level').value == 2){
+        level = 2;
+        return 2;
+    }
+    else{
+        level = 3;
+        return 3;
+    }
+
+    
+}
+
+
+//פונקציה ששולחת אלרט בעת שינוי של הדרגה
+function levelsAlerts(){
+    if(document.getElementById('level').value == 1)
+        alert('בחרת בדרגת קושי קלה. התחל לשחק');
+    else if(document.getElementById('level').value == 2)
+        alert('בחרת בדרגת קושי בינונית. התחל לשחק');
+    else
+        alert('בחרת בדרגת קושי קשה. התחל לשחק');
+
+    startOver();
+}
+
+
+
+
+//פונקציה שמורה על תחילת המשחק
+function addPopStartGame(){
+    let popUpOb = document.getElementById('popUpStart');
+    document.getElementById('container').style.display = 'none';
+    popUpOb.innerHTML = '<p id="Pstart">התחל משחק</p>';
+    document.getElementById('Pstart').style.transition = '1s';
+
+    setInterval(function(){
+        document.getElementById('Pstart').style.transform = 'scale(1.5)';
+        setTimeout(() => document.getElementById('Pstart').style.transform = 'scale(1)', 500);
+    } ,1000);
+
+    popUpOb.onclick = function(){
+        popUpOb.style.display = 'none';
+        document.getElementById('container').style.display = 'flex';
+
+    }
+}
+
+
+//פונקציה שמטפלת במקרים של לחיצה על משבצת כשאסור
+function MustNotClick(index){
+    if(!emptyBoxes.has(index)){
+        alert('בחרת משבצת תפוסה. אנא בחר בשנית');
+        return true;
+    }
+}
+
 
 
 //בחירת משבצת ע"י המשתמש
@@ -242,19 +334,28 @@ function userChooseBox(indexBox){
 function computerChooseBoxRandomly(){   
     turnCounter++;
     whoTurn();
-
-    if(levels() == 1){
-        randomBox = isBoxEmptyComp();
-    }
-    else{
-        // קבלת  מספר משבצת לחסימה של המשתמש
-        randomBox = computerBlock();
-        //אין מה לחסום 
-        if(randomBox == -1){
+    
+        if(levels() == 1){
             randomBox = isBoxEmptyComp();
         }
-    }
+        else if(levels() == 2){
+            randomBox = computerWin();
+            if(randomBox == -1)
+                randomBox = isBoxEmptyComp();
+        }
+        else{ 
+            // קבלת  מספר משבצת לחסימה של המשתמש
+            randomBox = computerWin();
+            //אין מה לחסום 
+            if(randomBox == -1){
+                randomBox = computerBlock();
+                if(randomBox == -1)
+                    randomBox = isBoxEmptyComp();
+            }
+        }
     
+
+
     //סימון על הלוח
     document.getElementById(`box${randomBox}`).innerHTML = '<p class="imgXorCircle"><span style="font-size: 120px" class="material-symbols-outlined">circle</span></p>';
     //הורדת המשבצת מהאפשרויות
@@ -264,61 +365,6 @@ function computerChooseBoxRandomly(){
     //האם המחשב ניצח ?
     isWin(tempArrComp);      
 }
-
-
-//הפונקציה קובעת את רמת הקושי - דיפולט זה 1
-function levels(){
-    if(document.getElementById('level').value == 1){
-        level = 1;
-        return 1;
-    }
-    level = 2;
-    return 2;
-}
-
-
-//פונקציה ששולחת אלרט בעת שינוי של הדרגה
-function levelsAlerts(){
-    if(document.getElementById('level').value == 1)
-        alert('בחרת בדרגת קושי קלה-בינונית. התחל לשחק');
-    else
-        alert('בחרת בדרגת קושי בינונית-קשה. התחל לשחק');
-
-        startOver();
-}
-
-
-
-
-//פונקציה שמורה על תחילת המשחק
-function addPopStartGame(){
-    let popUpOb = document.getElementById('popUpStart');
-    document.getElementById('container').style.display = 'none';
-    popUpOb.innerHTML = '<p>התחל משחק</p>';
-
-    popUpOb.onclick = function(){
-        popUpOb.style.display = 'none';
-        document.getElementById('container').style.display = 'flex';
-
-    }
-}
-
-
-//כאשר האתר נטען נפעיל את הפונקציה שמורה על פתיחת המשחק
-onload = function(){
-    addPopStartGame();
-}
-
-
-
-//פונקציה שמטפלת במקרים של לחיצה על משבצת כשאסור
-function MustNotClick(index){
-    if(!emptyBoxes.has(index)){
-        alert('בחרת משבצת תפוסה. אנא בחר בשנית');
-        return true;
-    }
-}
-
 
 
 
@@ -355,34 +401,8 @@ function above(index){
 
 
 
-
-//TODO: לעשות פונקציה שמטפל במקרה שהמחשב יכול לנצח אז שינצח לפני שהוא חוסם
-
-
-
-
-
-
-
-
-
-// ******************************  נספחים שעדיין לא נמחקו **********************************************
-
-
-// //ברגע שהעמוד נטען - פעימות של התמונה
-// window.addEventListener('DOMContentLoaded', function(){
-//     setInterval(function(){
-//         document.getElementById('XCircle').style.transform = 'scale(1.3)';
-//         setTimeout(() => document.getElementById('XCircle').style.transform = 'scale(1)', 500);
-//     },1200);
-// })
-
-
-
-// //החלפה בין התמונה הראשונה לטבלה
-// function removePicAddTable(){
-//     document.getElementById('imgSide').style.display = 'none';
-//     document.getElementById('container').style.display = 'flex';
-//     document.getElementById('sideText').style.display = 'inline-block';
-// }
+//כאשר האתר נטען נפעיל את הפונקציה שמורה על פתיחת המשחק
+onload = function(){
+    addPopStartGame();
+}
 

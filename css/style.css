@@ -13,8 +13,8 @@
 
 body{
     direction: rtl;
-    background: linear-gradient(#f2e0cb, white, #fdd6ff);
-    background-attachment: fixed;
+    background-color: #f6cece;
+    /* background-attachment: fixed; */
     /* height: 100%;
     background-size: cover; */
 }
@@ -61,7 +61,7 @@ select{
     font-size: 14px;
     padding: 3px;
     border: none;
-    background-color: lightgray;
+    background-color: #f5f6f7;
     font-family: "Frank Ruhl Libre", serif;
 }
 
@@ -109,7 +109,7 @@ option{
     border-radius: 10px;
     padding: 50px 100px;
     text-align: center;
-    color: #21edff;
+    color: #042c54;
     background-color: inherit;
     font-size: 80px;
     font-weight: bold;
@@ -148,12 +148,13 @@ option{
     text-align: center;
     border-spacing: 0;
     font-family: 'Heebo', sans-serif;
+    background-color: #d8ebfa;
     /* border: 1px solid red; */
 }
 
 #tableSide td, #tableSide th{
     padding: 7px 10px;
-    border: 1px solid white;
+    border: 1px solid #212020;
 }
 
 #tableSide th, .round{
@@ -169,8 +170,7 @@ option{
 
 #line{
     position: absolute;
-    border: 2px solid #409fe3;
-    box-shadow: 0 0 5px #409fe3;
+    border: 2px solid black;
     z-index: 20;
     display: none;
 }
