@@ -234,9 +234,7 @@ function startOver(){
       //לבדוק האם קיים בכלל כי אם עושים משחק חדש למרות שהמשחק לא נגמר אז זה לא נכון
       document.getElementById('line').classList.remove(`line${CombinationIndex}`);
       document.getElementById('container').style.display = 'flex';
-      whoTurn();
-      console.log(level);
-      
+      whoTurn();     
 }
 
 
@@ -290,12 +288,13 @@ function levelsAlerts(){
 function addPopStartGame(){
     let popUpOb = document.getElementById('popUpStart');
     document.getElementById('container').style.display = 'none';
-    popUpOb.innerHTML = '<p id="Pstart">התחל משחק</p>';
-    document.getElementById('Pstart').style.transition = '1s';
+    popUpOb.innerHTML = '<p class="Pstart"> התחל משחק</p>';
+    popUpOb.innerHTML += '<p class="Pstart" style="font-size: 50px">איקס עיגול</p>'
+    document.getElementsByClassName('Pstart')[0].style.transition = '1s';
 
     setInterval(function(){
-        document.getElementById('Pstart').style.transform = 'scale(1.5)';
-        setTimeout(() => document.getElementById('Pstart').style.transform = 'scale(1)', 500);
+        document.getElementsByClassName('Pstart')[0].style.transform = 'scale(1.5)';
+        setTimeout(() => document.getElementsByClassName('Pstart')[0].style.transform = 'scale(1)', 500);
     } ,1000);
 
     popUpOb.onclick = function(){

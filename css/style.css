@@ -101,7 +101,7 @@ option{
     margin: auto;
 }
 
-#popUpStart{
+.Pstart{
     position: absolute;
     top: 50%;
     left: 50%;
