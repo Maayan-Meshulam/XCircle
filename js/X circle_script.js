@@ -44,8 +44,6 @@ let combinationsWin = [
 /************************************** הגדרת פונקציות ******************************************/
 
 
-// onload = function(){level = 1};
-
 function computerBlock(){
     let count = 0;
     //i מסמל סט ספציפי של קומבינציית ניצחון
@@ -234,6 +232,7 @@ function startOver(){
       //לבדוק האם קיים בכלל כי אם עושים משחק חדש למרות שהמשחק לא נגמר אז זה לא נכון
       document.getElementById('line').classList.remove(`line${CombinationIndex}`);
       document.getElementById('container').style.display = 'flex';
+      clearTimeout(clearTimeOutTurn);
       whoTurn();     
 }
 
@@ -319,7 +318,7 @@ function userChooseBox(indexBox){
     turnCounter++;
     whoTurn();
     //סימון על הלוח
-    document.getElementById(`box${indexBox}`).innerHTML = '<p class="imgXorCircle"><span style="font-size: 140px" class="material-symbols-outlined">close</span></p>';
+    document.getElementById(`box${indexBox}`).innerHTML = '<p class="imgXorCircle"><span class="material-symbols-outlined">close</span></p>';
     //הורדת המשבצת מהאפשרויות
     removeBoxFromGame(indexBox);
     //מערך זמני למטרת זיהוי של קומבינצית ניצחון
@@ -355,7 +354,7 @@ function computerChooseBoxRandomly(){
 
 
     //סימון על הלוח
-    document.getElementById(`box${randomBox}`).innerHTML = '<p class="imgXorCircle"><span style="font-size: 120px" class="material-symbols-outlined">circle</span></p>';
+    document.getElementById(`box${randomBox}`).innerHTML = '<p class="imgXorCircle"><span class="material-symbols-outlined">circle</span></p>';
     //הורדת המשבצת מהאפשרויות
     removeBoxFromGame(randomBox);
     //מערך זמני למטרת זיהוי של קומבינצית ניצחון
@@ -365,7 +364,7 @@ function computerChooseBoxRandomly(){
 }
 
 
-
+let clearTimeOutTurn;
 //פונקציה ראשית ! - מופעל בעת לחיצה על משבצת
 function above(index){
 
@@ -386,7 +385,7 @@ function above(index){
         return;
     }
     else{
-        setTimeout(() => {
+        clearTimeOutTurn = setTimeout(() => {
             computerChooseBoxRandomly();
             //נבדוק אם יש ניצחון
             if(isWin(tempArrComp)){
@@ -404,3 +403,19 @@ onload = function(){
     addPopStartGame();
 }
 
+
+function chagneScreenPattern(){
+    let tableSideObg = document.getElementById("tableSide");
+    if(window.innerWidth <= 600){
+        tableSideObg.remove();
+        document.getElementById("container").appendChild(tableSideObg);
+    }
+    else if(window.innerWidth >= 940){
+        tableSideObg.remove();
+        document.getElementById('innerDiv').appendChild(tableSideObg);
+    }
+}
+
+//נתאים את מבנה המסך לגודלו
+window.addEventListener("resize", chagneScreenPattern);
+window.addEventListener("load", chagneScreenPattern);

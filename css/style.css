@@ -99,6 +99,7 @@ option{
     display: block;
     width: fit-content;
     margin: auto;
+    font-size: 120px;
 }
 
 #popUpStart{
@@ -222,6 +223,7 @@ option{
     padding: 3px 15px;
     cursor: pointer;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #startGameOverBtn{
@@ -232,4 +234,201 @@ option{
     font-weight: 600;
     font-size: 18px;
     cursor: pointer;
+}
+
+
+
+
+
+
+/*********************************** media screen ********************************** */
+
+@media screen and (max-width: 1200px) {
+    
+    #tableXCircle{
+        width: 406px;
+        height: 406px;
+    }
+
+    #tableXCircle td{
+        width: 120px;
+        height: 120px;
+    }
+
+    .imgXorCircle > span{
+        font-size: 65px;
+    }
+
+    h1{
+        font-size: 45px;
+    }
+
+    #turnP{
+        font-size: 18px;
+    }
+
+    #tableSide{
+        font-size: 14px;
+    }
+
+    #resetPointsBtn{
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
+    #container{
+        gap: 50px;
+    }
+
+    #sideText{
+        width: 250px;
+    }
+
+    #popUp{
+        font-size: 25px;
+        padding: 40px 70px;
+    }
+
+    #popUpStart{
+        font-size: 60px;
+    }
+
+    .line0{
+        transform: translate(-210px, -110px) rotate(90deg);
+        height: 360px; 
+    }
+
+    .line1{
+        transform: translate(-200px, 20px) rotate(90deg);
+        height: 360px; 
+    }
+
+    .line2{
+        transform: translate(-200px, 150px) rotate(90deg);
+        height: 360px; 
+    }
+
+    .line3{
+        transform: translate(-70px, 25px);
+        height: 360px; 
+    }
+
+    .line4{
+        transform: translate(-200px, 25px);
+        height: 360px; 
+    }
+
+    .line5{
+        transform: translate(-330px, 25px);
+        height: 360px; 
+    }
+
+    .line6{
+        transform: rotate(45deg) translate(-180px, 100px);
+        height: 500px; 
+    }
+
+    .line7{
+        transform: rotate(-45deg) translate(-110px, -180px);
+        height: 500px; 
+    }
+}
+
+
+
+@media screen and (max-width:600px) {
+    #container{
+        flex-direction: column;
+    }
+
+    #tableXCircle{
+        width: 256px;
+        height: 256px;
+    }
+
+    #tableXCircle td{
+        width: 70px;
+        height: 70px;
+    }
+
+    .imgXorCircle > span{
+        font-size: 40px;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+
+    #turnP{
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom:10px;
+
+    }
+
+    #resetPointsBtn{
+       margin-top: 0;
+    }
+
+    #container{
+        gap: 30px;
+        padding: 20px;
+    }
+
+    #sideText{
+        width: fit-content;
+    }
+
+    #popUp{
+        font-size: 16px;
+        padding: 20px 40px;
+    }
+
+    #startGameOverBtn{
+        font-size: 12px;
+    }
+
+    #popUpStart{
+        font-size: 40px;
+    }
+
+    .line0{
+        transform: translate(-135px, -55px) rotate(90deg);
+        height: 200px; 
+    }
+
+    .line1{
+        transform: translate(-135px, 25px) rotate(90deg);
+        height: 200px; 
+    }
+
+    .line2{
+        transform: translate(-135px, 110px) rotate(90deg);
+        height: 200px; 
+    }
+
+    .line3{
+        transform: translate(-45px, 25px);
+        height: 200px; 
+    }
+
+    .line4{
+        transform: translate(-125px, 25px);
+        height: 200px; 
+    }
+
+    .line5{
+        transform: translate(-210px, 25px);
+        height: 200px; 
+    }
+
+    .line6{
+        transform: rotate(45deg) translate(-80px, 100px);
+        height: 230px; 
+    }
+
+    .line7{
+        transform: rotate(-45deg) translate(-100px, -90px);
+        height: 230px; 
+    }
 }
